@@ -1,17 +1,21 @@
 package main
 
 import (
-	"fmt"
+	//"fmt"
 	sudoku "github.com/camen6ert/sudokuGenerator/sudokuGen"
 )
 
 func main() {
-	for {
+
+	//init population
+
+	population := make([][9][9]uint, 0)
+
+	for i := 0; i < 1000; i++ {
 		s := sudoku.SudokuGen()
-		b := sudoku.SudokuCorrect(s)
-		fmt.Println(b)
-		if b == true {
-			break
-		}
+		population = append(population, s)
 	}
+
+	for i:=0; i<len(population)
+
 }

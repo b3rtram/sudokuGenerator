@@ -22,16 +22,16 @@ func SudokuGen() [9][9]uint {
 	return s
 }
 
-func SudokuCorrect(s [9][9]uint) bool {
+func SudokuFitness(s [9][9]uint) int {
 
+	fit := 0
 	var nr [9]bool
 	//check lines
 	for y := 0; y <= 9; y++ {
 		for x := 0; x <= 9; x++ {
 			v := nr[s[y][x]]
 			if v == true {
-				fmt.Println("Sudoku error")
-				return false
+				fit++
 			}
 
 			nr[s[y][x]] = true
@@ -44,8 +44,7 @@ func SudokuCorrect(s [9][9]uint) bool {
 		for y := 0; y <= 9; y++ {
 			v := nr2[s[y][x]]
 			if v == true {
-				fmt.Println("Sudoku error")
-				return false
+				fit++
 			}
 
 			nr2[s[y][x]] = true
@@ -59,8 +58,7 @@ func SudokuCorrect(s [9][9]uint) bool {
 			for x := y; x < y+3; x++ {
 				v := nr3[s[y][x]]
 				if v == true {
-					fmt.Println("Sudoku error")
-					return false
+					fit++
 				}
 
 				nr3[s[y][x]] = true
@@ -68,11 +66,10 @@ func SudokuCorrect(s [9][9]uint) bool {
 		}
 	}
 
-	return true
+	return fit
 
 }
 
 func randInt(min int, max int) uint {
-
 	return uint(min + rand.Intn(max-min))
 }
